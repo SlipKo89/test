@@ -1,0 +1,12 @@
+---
+- name: show ver
+  ios_command:
+   commands: 
+   - "{{ cmd }}"
+   timeout: 30
+  register: result
+  
+- name: copy result to file 
+  copy:
+   content: "{{ result | to_nice_json }}"
+   dest: "./outputs/{{inventory_hostname}}/{{inventory_hostname}}_{{ cmd }}.json"

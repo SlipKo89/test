@@ -1,0 +1,20 @@
+- name: get full info from Cisco devices
+  hosts: cisco
+  connection: local
+
+  tasks:
+   - include_tasks: ./loop.yml
+     with_items: 
+     - sh ver
+     - sh tech
+     - sh inv 
+     - sh cdp nei det
+     - sh int stat
+     - sh int desc 
+     - sh vlan
+     - sh mac-add
+     - sh ip int br 
+     - sh arp
+     - sh ip route
+     loop_control:
+      loop_var: cmd
